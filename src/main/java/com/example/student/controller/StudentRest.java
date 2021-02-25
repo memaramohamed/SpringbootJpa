@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@RequestMapping("student")
 public class StudentRest {
     @Autowired
     StudentService studentService;
@@ -22,7 +23,7 @@ public class StudentRest {
         return studentService.getStudent(id);
     }
 
-    @PostMapping("{id}")
+    @PostMapping
     public Student addStudent(@RequestBody Student s) {
         return studentService.save(s);
     }
