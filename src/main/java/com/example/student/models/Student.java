@@ -1,8 +1,16 @@
 package com.example.student.models;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "STUDENTS")
 public class Student {
-    private String name ;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
+
+    @Column(name = "NAME")
+    private String name ;
 
     public Student() {
     }

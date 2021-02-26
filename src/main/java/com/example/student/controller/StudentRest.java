@@ -14,13 +14,14 @@ public class StudentRest {
     StudentService studentService;
 
     @GetMapping
-    public Collection<Student> getAllStudents() {
+    public Iterable<Student> getAllStudents() {
         return studentService.getAllStudent();
     }
 
     @GetMapping("{id}")
     public Student getStudent(@PathVariable Long id) {
-        return studentService.getStudent(id);
+        return studentService.getStudent(id)
+                .orElseThrow(()->new RuntimeException("No student found"));
     }
 
     @PostMapping
