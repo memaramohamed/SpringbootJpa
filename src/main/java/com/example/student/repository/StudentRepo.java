@@ -1,14 +1,10 @@
 package com.example.student.repository;
 
-import com.example.student.VirtualDB;
-import com.example.student.models.Student;
+import com.example.student.entities.Student;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Optional;
-
-@Component
+@Repository
 public interface StudentRepo extends CrudRepository<Student, Long> {
 
 //    public Student save(Student student) {

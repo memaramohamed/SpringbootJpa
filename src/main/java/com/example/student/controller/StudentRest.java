@@ -1,15 +1,15 @@
 package com.example.student.controller;
 
-import com.example.student.models.Student;
+import com.example.student.entities.Student;
+import com.example.student.models.StudentDTO;
 import com.example.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-
 @RestController
 @RequestMapping("student")
 public class StudentRest {
+
     @Autowired
     StudentService studentService;
 
@@ -20,8 +20,7 @@ public class StudentRest {
 
     @GetMapping("{id}")
     public Student getStudent(@PathVariable Long id) {
-        return studentService.getStudent(id)
-                .orElseThrow(()->new RuntimeException("No student found"));
+        return studentService.getStudent(id);
     }
 
     @PostMapping
