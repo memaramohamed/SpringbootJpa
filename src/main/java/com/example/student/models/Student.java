@@ -14,6 +14,8 @@ public class Student {
     @Column(name = "NAME")
     private String name;
 
+    private String lastName;
+
     @Column
     List<courseName> courseNames = new ArrayList<>();
     private Object Student;

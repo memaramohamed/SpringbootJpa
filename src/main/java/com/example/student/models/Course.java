@@ -21,6 +21,7 @@ import java.util.List;
         //kā to ievietot tabulā
         List<Student> listOfRegisteredStudents;
 
+
         public Course(int id, String courseName, List<Student> listOfRegisteredStudents) {
             this.id = id;
             this.courseName = courseName;
