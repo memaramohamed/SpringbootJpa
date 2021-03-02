@@ -1,11 +1,12 @@
 package com.example.student.controller;
 
-import com.example.student.models.Student;
+import com.example.student.entities.Student;
 import com.example.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("student")
@@ -19,7 +20,7 @@ public class StudentRest {
     }
 
     @GetMapping("{id}")
-    public Student getStudent(@PathVariable Long id) {
+    public Optional<Student> getStudent(@PathVariable Long id) {
         return studentService.getStudent(id);
     }
 
