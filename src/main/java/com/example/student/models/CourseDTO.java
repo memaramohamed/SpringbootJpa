@@ -1,3 +1,4 @@
+
 package com.example.student.models;
 
 public class CourseDTO {

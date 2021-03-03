@@ -1,10 +1,12 @@
 package com.example.student.repository;
-
 import com.example.student.entities.Student;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
+import java.util.Collection;
+import java.util.Optional;
+
+@Component
 public interface StudentRepo extends CrudRepository<Student, Long> {
 
 //    public Student save(Student student) {

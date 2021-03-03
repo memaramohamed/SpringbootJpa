@@ -1,6 +1,4 @@
 package com.example.student.entities;
-
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,24 +7,23 @@ import java.util.List;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "COURSE_NAME")
     private String courseName;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH
-            })
-    @JoinTable(
-            name = "COURSE_STUDENT",
-            joinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
-    )
+    @OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+    @JoinColumn(name="NAME")
     private List<Student> students;
 
     public Course() {
+    }
+
+    public Course(int i, String course, List<com.example.student.Student> students) {
+    }
+
+    public Course(long id, String course, List<Student> students) {
     }
 
     public Long getId() {
@@ -45,3 +42,4 @@ public class Course {
         this.courseName = courseName;
     }
 }
+

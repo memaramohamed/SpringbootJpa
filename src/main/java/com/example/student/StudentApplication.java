@@ -1,8 +1,8 @@
 package com.example.student;
 
-import com.example.student.models.Course;
-import com.example.student.models.Student;
-import com.example.student.models.courseName;
+import com.example.student.entities.Course;
+import com.example.student.entities.Course;
+import com.example.student.entities.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -19,7 +19,7 @@ public class StudentApplication {
 		HashMap<List<Student>, courseName> passedCourses = new HashMap<List<Student>, courseName>();
 
 
-		List<Student> students = new ArrayList<>();
+		List<Student> students = new ArrayList<Student>();
 		Course course = new Course(1,"Course",students);
 
 		List<Course> courses = new ArrayList<>();

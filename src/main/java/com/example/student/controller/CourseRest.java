@@ -1,5 +1,7 @@
 package com.example.student.controller;
 
+
+
 import com.example.student.entities.Course;
 import com.example.student.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,3 +29,4 @@ public class CourseRest {
         return courseService.save(c);
     }
 }
+

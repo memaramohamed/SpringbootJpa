@@ -15,9 +15,9 @@ public class Student {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                        CascadeType.DETACH, CascadeType.REFRESH
-                })
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH
+            })
     @JoinTable(
             name = "COURSE_STUDENT",
             joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),

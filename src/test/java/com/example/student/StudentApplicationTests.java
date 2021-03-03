@@ -7,6 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StudentApplicationTests {
 
 	@Test
+	void getStudent() {
+	}
+
+	@Test
 	void contextLoads() {
 	}
 

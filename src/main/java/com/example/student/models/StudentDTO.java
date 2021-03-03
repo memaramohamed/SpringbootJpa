@@ -1,27 +1,8 @@
 package com.example.student.models;
-import javax.persistence.*;
 
-@Entity
-@Table(name = "STUDENTS")
-public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-
-    @Column(name = "NAME")
-    private String name ;
-
-    public Student() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+public class StudentDTO {
+    private Long id;
+    private String name;
 
     public Long getId() {
         return id;
@@ -30,4 +11,12 @@ public class Student {
     public void setId(Long id) {
         this.id = id;
     }
-}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }}
+

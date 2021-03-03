@@ -1,3 +1,4 @@
+
 package com.example.student.entities;
 
 import javax.persistence.Entity;

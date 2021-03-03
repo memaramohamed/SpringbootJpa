@@ -1,3 +1,4 @@
+
 package com.example.student.exceptions;
 
 import org.springframework.web.bind.annotation.ResponseStatus;

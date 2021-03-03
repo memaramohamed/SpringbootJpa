@@ -55,3 +55,4 @@ public class CourseGrade {
         this.grade = grade;
     }
 }
+
