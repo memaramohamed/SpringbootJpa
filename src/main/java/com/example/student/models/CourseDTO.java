@@ -4,6 +4,9 @@ public class CourseDTO {
     private Long id;
     private String courseName;
 
+    public CourseDTO() {
+    }
+
     public Long getId() {
         return id;
     }

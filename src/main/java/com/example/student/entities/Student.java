@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "STUDENTS")
+@Table(name = "STUDENT")
 public class Student {
 
     @Id
@@ -14,15 +14,21 @@ public class Student {
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToOne( fetch = FetchType.LAZY,
                 cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                         CascadeType.DETACH, CascadeType.REFRESH
                 })
     @JoinTable(
-            name = "COURSE_STUDENT",
+            name = "COURSE_STUDENTS",
             joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
     )
+    private Course course;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH
+            })
     private List<Course> courses;
 
     public Student() {

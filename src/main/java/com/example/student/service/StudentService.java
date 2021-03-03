@@ -17,23 +17,33 @@ public class StudentService {
 
     @Autowired
     StudentRepo studentRepo;
+    @Autowired
+    StudentMapper studentMapper;
 
-    public Student getStudent(Long id) throws StudentNotFoundException {
+    public StudentDTO getStudent(Long id) throws StudentNotFoundException {
         Optional<Student> byId = studentRepo.findById(id);
         if(!byId.isPresent()) {
             throw new StudentNotFoundException("Student with ID number: " + id + " not found on the record!");
         }
-        return byId.get();
+        StudentDTO studentDTO = studentMapper.studentToStudentDT0(byId.get());
+        return studentDTO;
     }
 
-    public Collection<Student> getAllStudent() {
+    public Collection<StudentDTO> getAllStudent() {
         Iterable<Student> iterableStudent = studentRepo.findAll();
         Collection<Student> collectionStudent = new ArrayList<Student>();
         iterableStudent.forEach(collectionStudent::add);
-        return collectionStudent;
+
+        Collection<StudentDTO> collectionStudentDTO = new ArrayList<StudentDTO>();
+        collectionStudent.stream()
+                .map(student -> studentMapper.studentToStudentDT0(student))
+                .forEach(collectionStudentDTO::add);
+
+        return collectionStudentDTO;
     }
 
-    public Student save(Student student) {
+    public Student save(StudentDTO studentDTO) {
+        Student student = studentMapper.studentDTOToStudent(studentDTO);
         return studentRepo.save(student);
     }
 }

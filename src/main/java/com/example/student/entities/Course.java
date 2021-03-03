@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "COURSES")
+@Table(name = "COURSE")
 public class Course {
 
     @Id
@@ -15,16 +15,21 @@ public class Course {
     @Column(name = "COURSE_NAME")
     private String courseName;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH
             })
-    @JoinTable(
-            name = "COURSE_STUDENT",
-            joinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
-    )
     private List<Student> students;
+
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(
+            name = "STUDENT_COURSES",
+            joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
+    )
+    private Student student;
 
     public Course() {
     }
@@ -43,5 +48,13 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

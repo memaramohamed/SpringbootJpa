@@ -14,17 +14,17 @@ public class StudentRest {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAllStudents() {
+    public Iterable<StudentDTO> getAllStudents() {
         return studentService.getAllStudent();
     }
 
     @GetMapping("{id}")
-    public Student getStudent(@PathVariable Long id) {
+    public StudentDTO getStudent(@PathVariable Long id) {
         return studentService.getStudent(id);
     }
 
     @PostMapping
-    public Student addStudent(@RequestBody Student s) {
+    public Student addStudent(@RequestBody StudentDTO s) {
         return studentService.save(s);
     }
 }

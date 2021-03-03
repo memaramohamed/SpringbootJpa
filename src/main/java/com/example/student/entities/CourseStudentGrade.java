@@ -3,24 +3,24 @@ package com.example.student.entities;
 import javax.persistence.*;
 
 @Entity
-public class CourseGrade {
+public class CourseStudentGrade {
 
     @EmbeddedId
     CourseGradeKey id;
 
-    @OneToOne
+    @ManyToOne
     @MapsId("StudentId")
     @JoinColumn(name = "STUDENT_ID")
     Student student;
 
-    @OneToOne
+    @ManyToOne
     @MapsId("CourseId")
     @JoinColumn(name = "COURSE_ID")
     Course course;
 
     Grade grade;
 
-    public CourseGrade() {
+    public CourseStudentGrade() {
     }
 
     public CourseGradeKey getId() {

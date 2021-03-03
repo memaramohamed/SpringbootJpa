@@ -4,7 +4,7 @@ import com.example.student.entities.Student;
 import com.example.student.models.StudentDTO;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface StudentMapper {
 
     Student studentDTOToStudent(StudentDTO studentDTO);
