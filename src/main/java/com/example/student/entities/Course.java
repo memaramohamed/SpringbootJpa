@@ -6,40 +6,53 @@ import java.util.List;
 @Table(name = "COURSES")
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    @Column(name = "COURSE_NAME")
-    private String courseName;
+        @Column(name = "COURSE_NAME")
+        private String courseName;
 
-    @OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-    @JoinColumn(name="NAME")
-    private List<Student> students;
+        @OneToMany(mappedBy = "course", fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH
+                })
+        private List<Student> students;
 
-    public Course() {
+        @ManyToOne(fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH})
+        @JoinTable(
+                name = "STUDENT_COURSES",
+                joinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"),
+                inverseJoinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
+        )
+        private Student student;
+
+        public Course() {
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getCourseName() {
+            return courseName;
+        }
+
+        public void setCourseName(String courseName) {
+            this.courseName = courseName;
+        }
+
+        public List<Student> getStudents() {
+            return students;
+        }
+
+        public void setStudents(List<Student> students) {
+            this.students = students;
+        }
     }
-
-    public Course(int i, String course, List<com.example.student.Student> students) {
-    }
-
-    public Course(long id, String course, List<Student> students) {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-}
-

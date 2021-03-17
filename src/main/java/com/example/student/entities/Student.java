@@ -1,4 +1,5 @@
 package com.example.student.entities;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,14 +8,14 @@ import java.util.List;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "NAME")
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @OneToMany (fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH
             })
@@ -52,3 +53,4 @@ public class Student {
         this.courses = courses;
     }
 }
+
